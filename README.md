@@ -100,3 +100,8 @@ uvicorn main:app --reload
 ```
 
 Open `http://localhost:8000` in your browser.
+
+
+
+View Training and EDA process done in this notebook: 
+https://github.com/kishoricharpe9-ai/Credit_Risk_Assessment_using_SHAP_and_Caliberation/blob/main/notebooks/credit_risk_eda_and_training.ipynb.ipynb
