@@ -6,3 +6,4 @@ shap
 pandas
 numpy
 pydantic
+xgboost
