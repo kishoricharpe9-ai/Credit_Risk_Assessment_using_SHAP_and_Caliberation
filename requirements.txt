@@ -1,7 +1,8 @@
+scikit-learn==1.6.1
+joblib
 fastapi
-uvicorn[standard]
-pydantic
+uvicorn
+shap
 pandas
 numpy
-scikit-learn
-joblib
+pydantic
