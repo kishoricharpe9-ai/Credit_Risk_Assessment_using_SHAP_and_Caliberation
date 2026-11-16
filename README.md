@@ -1,19 +1,32 @@
-# Credit-Risk-Assessment-using-SHAP-and-Caliberation
+# 💳 Credit Risk Assessment & Loan Default Predictor 
 
-```
-# 💳 Credit Risk Assessment &amp; Loan Default Predictor
+[![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)](https://fastapi.tiangolo.com/)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![Scikit-Learn](https://img.shields.io/badge/scikit_learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
+[![XGBoost](https://img.shields.io/badge/XGBoost-121212?style=for-the-badge&logo=xgboost&logoColor=white)](https://xgboost.readthedocs.io/)
 
-[![Live App]([suspicious link removed])](https://credit-risk-assessment-using-shap-and-dmr4.onrender.com/)
-[![FastAPI]([suspicious link removed])]([suspicious link removed])
-[![JavaScript]([suspicious link removed])]([suspicious link removed])
-[![Scikit-Learn]([suspicious link removed])]([suspicious link removed])
-[![XGBoost]([suspicious link removed])]([suspicious link removed])
 
 An end-to-end full-stack Machine Learning application featuring a custom **HTML5/CSS3/JavaScript** frontend interacting asynchronously with a **FastAPI** REST backend. Predicts loan default risk using **Calibrated XGBoost**, **Scikit-Learn Pipelines**, and **SHAP (Explainable AI)**.
 
-🔗 **Live Application**: [https://credit-risk-assessment-using-shap-and-dmr4.onrender.com/](https://credit-risk-assessment-using-shap-and-dmr4.onrender.com/)
+🔗 **Live Application**: [https://credit-risk-assessment-using-shap-and-dmr4.onrender.com/])
 
 ---
+🛠️ Project Structure
+## 📁 Repository Structure
+
+```text
+Credit_Risk_Assessment_using_SHAP_and_Caliberation/
+│
+├── static/                         # Frontend assets
+│   ├── index.html                  # HTML5 User Interface
+│   ├── style.css                   # Custom Modern CSS styling
+│   └── script.js                   # Async fetch() API & DOM manipulation logic
+│
+├── main.py                         # FastAPI server & REST API endpoints
+├── credit_risk_pipeline.pkl        # Exported Scikit-Learn preprocessing & XGBoost model
+├── shap_explainer.pkl              # Saved SHAP TreeExplainer object
+├── requirements.txt                # Python dependencies
+└── README.md                       # Project documentation
 
 ## 🌟 Key Engineering &amp; Architecture Highlights
 
