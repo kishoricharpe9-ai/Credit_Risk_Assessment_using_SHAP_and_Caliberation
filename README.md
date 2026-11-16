@@ -8,7 +8,7 @@
 
 An end-to-end full-stack Machine Learning application featuring a custom **HTML5/CSS3/JavaScript** frontend interacting asynchronously with a **FastAPI** REST backend. Predicts loan default risk using **Calibrated XGBoost**, **Scikit-Learn Pipelines**, and **SHAP (Explainable AI)**.
 
-🔗 **Live Application**: [https://credit-risk-assessment-using-shap-and-dmr4.onrender.com/])
+🔗 **Live Application**: [[https://credit-risk-assessment-using-shap-and-dmr4.onrender.com/](https://creditriskassessmentusingshapandcaliberati-production.up.railway.app/)])
 
 ---
 🛠️ Project Structure
