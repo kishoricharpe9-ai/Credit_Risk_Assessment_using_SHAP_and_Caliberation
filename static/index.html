@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Credit Risk Scorer</title>
+  <meta name="description" content="Assess loan default risk with a machine learning model." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="bg" aria-hidden="true">
+    <span class="orb orb-a"></span>
+    <span class="orb orb-b"></span>
+    <span class="grid"></span>
+  </div>
+
+  <header class="top">
+    <div class="brand">
+      <span class="logo" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-5 4 4 8-9"/><path d="M15 7h5v5"/></svg>
+      </span>
+      <span class="brand-name">Riskwise</span>
+    </div>
+    <div class="status" id="status" title="API status">
+      <span class="dot"></span><span id="status-text">Checking API…</span>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero reveal">
+      <h1>Know the risk <span class="grad">before you lend.</span></h1>
+      <p>Enter an applicant's details and the model estimates their probability of default in seconds.</p>
+    </section>
+
+    <div class="layout">
+      <!-- FORM -->
+      <form id="form" class="card form reveal" style="--d:.08s" novalidate>
+        <div class="card-head">
+          <h2>Applicant details</h2>
+          <button type="button" class="link" id="fill-example">Fill example</button>
+        </div>
+
+        <fieldset>
+          <legend>Personal</legend>
+          <div class="row">
+            <label class="field">
+              <span>Age</span>
+              <input type="number" name="person_age" min="18" max="100" step="1" placeholder="e.g. 28" required />
+            </label>
+            <label class="field">
+              <span>Annual income</span>
+              <div class="affix"><i>$</i><input type="number" name="person_income" min="1" step="100" placeholder="55000" required /></div>
+            </label>
+          </div>
+          <div class="row">
+            <label class="field">
+              <span>Employment length <em>years</em></span>
+              <input type="number" name="person_emp_length" min="0" max="60" step="0.5" placeholder="e.g. 4" required />
+            </label>
+            <label class="field">
+              <span>Credit history <em>years</em></span>
+              <input type="number" name="cb_person_cred_hist_length" min="0" max="60" step="1" placeholder="e.g. 6" required />
+            </label>
+          </div>
+
+          <div class="field">
+            <span>Home ownership</span>
+            <div class="segmented" role="radiogroup" aria-label="Home ownership">
+              <label><input type="radio" name="person_home_ownership" value="RENT" checked /><b>Rent</b></label>
+              <label><input type="radio" name="person_home_ownership" value="MORTGAGE" /><b>Mortgage</b></label>
+              <label><input type="radio" name="person_home_ownership" value="OWN" /><b>Own</b></label>
+              <label><input type="radio" name="person_home_ownership" value="OTHER" /><b>Other</b></label>
+              <i class="thumb"></i>
+            </div>
+          </div>
+
+          <div class="field">
+            <span>Previous default on file</span>
+            <div class="segmented two" role="radiogroup" aria-label="Previous default">
+              <label><input type="radio" name="cb_person_default_on_file" value="N" checked /><b>No</b></label>
+              <label><input type="radio" name="cb_person_default_on_file" value="Y" /><b>Yes</b></label>
+              <i class="thumb"></i>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Loan</legend>
+          <div class="row">
+            <label class="field">
+              <span>Loan amount</span>
+              <div class="affix"><i>$</i><input type="number" name="loan_amnt" min="1" step="50" placeholder="10000" required /></div>
+            </label>
+            <label class="field">
+              <span>Interest rate <em>%</em></span>
+              <input type="number" name="loan_int_rate" min="0" max="40" step="0.01" placeholder="e.g. 11.5" required />
+            </label>
+          </div>
+          <div class="row">
+            <label class="field">
+              <span>Purpose</span>
+              <select name="loan_intent">
+                <option value="PERSONAL">Personal</option>
+                <option value="EDUCATION">Education</option>
+                <option value="MEDICAL">Medical</option>
+                <option value="VENTURE">Venture</option>
+                <option value="HOMEIMPROVEMENT">Home improvement</option>
+                <option value="DEBTCONSOLIDATION">Debt consolidation</option>
+              </select>
+            </label>
+            <div class="field">
+              <span>Loan-to-income <em>auto</em></span>
+              <div class="readout" id="lti">—</div>
+            </div>
+          </div>
+
+          <div class="field">
+            <span>Loan grade</span>
+            <div class="chips" role="radiogroup" aria-label="Loan grade">
+              <label><input type="radio" name="loan_grade" value="A" checked /><b>A</b></label>
+              <label><input type="radio" name="loan_grade" value="B" /><b>B</b></label>
+              <label><input type="radio" name="loan_grade" value="C" /><b>C</b></label>
+              <label><input type="radio" name="loan_grade" value="D" /><b>D</b></label>
+              <label><input type="radio" name="loan_grade" value="E" /><b>E</b></label>
+              <label><input type="radio" name="loan_grade" value="F" /><b>F</b></label>
+              <label><input type="radio" name="loan_grade" value="G" /><b>G</b></label>
+            </div>
+          </div>
+        </fieldset>
+
+        <p class="error" id="error" role="alert" hidden></p>
+
+        <button type="submit" class="cta" id="submit">
+          <span class="cta-label">Assess risk</span>
+          <span class="spinner" aria-hidden="true"></span>
+        </button>
+      </form>
+
+      <!-- RESULT -->
+      <aside class="card result reveal" id="result" style="--d:.16s" data-state="idle" aria-live="polite">
+        <div class="card-head"><h2>Assessment</h2></div>
+
+        <div class="gauge-wrap">
+          <svg class="gauge" viewBox="0 0 220 130" aria-hidden="true">
+            <defs>
+              <linearGradient id="gLow" x1="0" x2="1"><stop offset="0" stop-color="#34d399"/><stop offset="1" stop-color="#2dd4bf"/></linearGradient>
+              <linearGradient id="gHigh" x1="0" x2="1"><stop offset="0" stop-color="#fb923c"/><stop offset="1" stop-color="#f43f5e"/></linearGradient>
+            </defs>
+            <path class="track" d="M20 110 A90 90 0 0 1 200 110" pathLength="100" />
+            <path class="fill" id="arc" d="M20 110 A90 90 0 0 1 200 110" pathLength="100" />
+            <line class="tick" id="tick" x1="0" y1="0" x2="0" y2="0" />
+          </svg>
+          <div class="gauge-center">
+            <div class="pct"><span id="pct">0</span><small>%</small></div>
+            <div class="pct-label">default probability</div>
+          </div>
+        </div>
+
+        <div class="verdict" id="verdict"><span class="pill" id="pill">Awaiting input</span></div>
+
+        <div class="idle-note">
+          Fill in the form and hit <b>Assess risk</b> to see the model's estimate.
+        </div>
+
+        <dl class="stats">
+          <div><dt>Decision threshold</dt><dd id="s-threshold">—</dd></div>
+          <div><dt>Loan-to-income</dt><dd id="s-lti">—</dd></div>
+          <div><dt>Grade · Rate</dt><dd id="s-grade">—</dd></div>
+        </dl>
+
+        <p class="fine">Model output is a statistical estimate and should support, not replace, human judgment.</p>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="foot">Built with FastAPI · scikit-learn</footer>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>
