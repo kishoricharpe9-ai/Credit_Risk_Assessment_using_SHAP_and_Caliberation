@@ -8,7 +8,7 @@
 
 An end-to-end full-stack Machine Learning application featuring a custom **HTML5/CSS3/JavaScript** frontend interacting asynchronously with a **FastAPI** REST backend. Predicts loan default risk using **Calibrated XGBoost**, **Scikit-Learn Pipelines**, and **SHAP (Explainable AI)**.
 
-🔗 **Live Application**: [https://credit-risk-assessment-using-shap-and-dmr4.onrender.com/])
+🔗 **Live Application**: [(https://creditriskassessmentusingshapandcaliberati-production.up.railway.app/)]
 
 ---
 🛠️ Project Structure
@@ -100,3 +100,8 @@ uvicorn main:app --reload
 ```
 
 Open `http://localhost:8000` in your browser.
+
+
+
+View Training and EDA process done in this notebook: 
+https://github.com/kishoricharpe9-ai/Credit_Risk_Assessment_using_SHAP_and_Caliberation/blob/main/notebooks/credit_risk_eda_and_training.ipynb.ipynb
